@@ -38,7 +38,7 @@
         </span>
         @enderror
         @if (isset($shortened))
-            <div class="p-3"><h5><a href="{{ $shortened }}" class="text-white">{{ $shortened }}</a></h5></div>
+            <div class="p-2"><h5><a href="{{ $shortened }}" class="text-white">{{ $shortened }}</a></h5></div>
         @endif
     </main>
 </div>
