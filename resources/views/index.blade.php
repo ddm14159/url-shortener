@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-param" content="_token" />
-    <title></title>
+    <title>{{__('interface.title')}}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,11 +26,11 @@
 <div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
     <main class="px-3">
 
-        <p class="lead">Paste the URL to be shortened</p>
+        <p class="lead">{{__('interface.intro')}}</p>
         {{ Form::open(['route' => 'store']) }}
         {{ Form::token() }}
-        {{ Form::text('url', $url ?? null, ['size' => 60, 'placeholder' => 'Enter the link here']) }}
-        {{ Form::submit('Shorten') }}
+        {{ Form::text('url', $url ?? null, ['size' => 60, 'placeholder' => __('interface.placeholder')]) }}
+        {{ Form::submit(__('interface.submit')) }}
         {{ Form::close() }}
         @error('url')
         <span class="text-danger" role="alert">
