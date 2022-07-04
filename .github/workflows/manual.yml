@@ -1,0 +1,26 @@
+name: main Workflow
+on: [push]
+jobs:
+ main:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Check out repository code
+          uses: actions/checkout@v2
+        - name: install dependencies
+          uses: shivammathur/setup-php@v2
+          with:
+                php-version: '8.1'
+                coverage: xdebug
+                tools: phpcs, phpunit
+        - name: install
+          run: make install
+        - name: Linter Test
+          run: make lint
+        - name: Run test & publish code coverage
+          uses: paambaati/codeclimate-action@v2.6.0
+          env:
+            CC_TEST_REPORTER_ID: ${{ secrets.URL_SHORTENER }}
+          with:
+            coverageCommand: make test
+            coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
+            debug: true
